@@ -1,12 +1,19 @@
 const express = require('express');
 const cors = require('cors');
-const connectDB = require('./config/db/connectDB');
+
+// Configs
+const connectDB = require('./config/db/connectDB.js');
+const session = require('./config/session/sessionConfig.js');
+
 require('dotenv').config();
 
 const app = express();
 
 connectDB();
 
+app.set('trust proxy', 1); // trust first proxy
+
+app.use(session);
 app.use(cors());
 app.use(require('./routes/routes.js'));
 

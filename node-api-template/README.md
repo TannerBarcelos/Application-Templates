@@ -8,12 +8,7 @@
 PORT = 5151
 NODE_ENV = development
 VERSION = v1
+SESSION_SECRET = <generate here - https://passwordsgenerator.net </generate>
 ```
 
-2. Using Docker Compose, leveraging Make commands, we will start up the services and have them intercommunicate
-
-```bash
-Make up-dev
-# or
-docker-compose up
-```
+2. To run the app with or without Docker, see the Makefile in this repo
