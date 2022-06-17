@@ -1,10 +1,11 @@
 build-node-image:
-	docker build -t backend -f Dockerfile.dev .
-run-node-container:
-	docker run --rm --name api-server -p 5151:5151 -v /app/node_modules -v $(shell pwd):/app --env-file .env backend
-stop-node-contaner:
-	docker stop api-server
-
+	cd backend && docker build -t backend -f Dockerfile.dev .
+run-node-image:
+	cd backend && docker run --rm --name api-server -p 5151:5151 -v /app/node_modules -v $(shell cd backend && pwd):/app --env-file .env backend
+build-client-image:
+	cd frontend && docker build -t react-app -f Dockerfile.dev .
+run-client-image:
+	docker run --name client -p 3000:3000 -v /app/node_modules -v $(shell cd frontend && pwd):/app --env-file .env react-app
 compose-up-build:
 	docker-compose -f docker-compose-dev.yml up --build
 compose-up-dev:
